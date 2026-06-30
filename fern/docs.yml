@@ -40,6 +40,6 @@ redirects:
   - source: "/infra-controller/documentation/introduction"
     destination: "/infra-controller/documentation/overview/what-is-nico"
   - source: "/infra-controller/documentation/getting-started/site-setup"
-    destination: "infra-controller/documentation/getting-started/quick-start-guide"
+    destination: "/infra-controller/documentation/getting-started/quick-start-guide"
   - source: "/infra-controller/documentation/getting-started/building-ni-co-containers"
     destination: "/infra-controller/documentation/getting-started/building-nico-containers"
