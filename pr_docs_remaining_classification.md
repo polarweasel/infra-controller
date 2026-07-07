@@ -1,0 +1,348 @@
+# Remaining PR Docs Classification
+
+## Methodology
+
+- Remaining set computed as `no_docs - most_likely_missing - least_likely` using numeric uniqueness and ascending order.
+- Least-likely source: `pr_numbers_least_likely_docs_needed.txt` when present; otherwise derived from `pr_docs_triage.csv` rows with `needs_docs==no`.
+- Classification signals are deterministic from GitHub PR metadata (`title`, `body`, changed file paths from PR APIs).
+- Strong operator signals: deploy/helm/admin-cli/dev/scripts/runtime/infrastructure terms and matching path prefixes.
+- Strong API/reference signals: proto/openapi/rest-api/api/crates/api*/rpc/schema/endpoint terms and matching paths.
+- Tie/near-tie handling prefers API/reference unless operator score exceeds API score by at least 2 points.
+
+## Counts
+
+- Remaining PRs: **326**
+- Operator Docs Possibly Needed: **51**
+- API/Reference Docs Possibly Needed: **275**
+
+## Operator Docs Possibly Needed
+
+- [#2034](https://github.com/NVIDIA/infra-controller/pull/2034) Make NICo storage class handling configurable - operator terms (2)
+- [#2133](https://github.com/NVIDIA/infra-controller/pull/2133) feat(dns): cache all negative DNS responses, switch to LRU - operator paths (3); operator terms (1)
+- [#2155](https://github.com/NVIDIA/infra-controller/pull/2155) chore(helm): move REST charts from rest-api/helm to helm/rest (#1755) - operator paths (55); operator terms (1)
+- [#2167](https://github.com/NVIDIA/infra-controller/pull/2167) feat(nico-ntp): add chrony NTP helm subchart - operator paths (14); operator terms (3)
+- [#2206](https://github.com/NVIDIA/infra-controller/pull/2206) Add `--zero-dpu` flag to admin-cli - operator paths (4); operator terms (1)
+- [#2221](https://github.com/NVIDIA/infra-controller/pull/2221) feat(admin-cli): add usage examples to all commands; restructure browse - operator paths (292); operator terms (2)
+- [#2249](https://github.com/NVIDIA/infra-controller/pull/2249) feat(helm): add opt-in legacy carbide/forge name aliases for nico-api… - operator paths (4); operator terms (1)
+- [#2251](https://github.com/NVIDIA/infra-controller/pull/2251) Validate that the ARM64 binaries are 64KB page size compatible - operator paths (1); operator terms (1)
+- [#2256](https://github.com/NVIDIA/infra-controller/pull/2256) chore: remove crates and containers that are no longer needed - operator paths (4)
+- [#2270](https://github.com/NVIDIA/infra-controller/pull/2270) fix(nico-dhcp): dual-name kea hook params + require operator IPs - operator paths (2); operator terms (3)
+- [#2280](https://github.com/NVIDIA/infra-controller/pull/2280) fix: admin cli: display Associated Switch in ew show - operator paths (1); operator terms (1)
+- [#2291](https://github.com/NVIDIA/infra-controller/pull/2291) fix: paginate DPU network status backing-machine lookups (#2137) - operator paths (4); operator terms (2)
+- [#2302](https://github.com/NVIDIA/infra-controller/pull/2302) fix(admin-cli): remove obsolete help text advising to restart Kea - operator paths (2); operator terms (1)
+- [#2329](https://github.com/NVIDIA/infra-controller/pull/2329) admin-cli: implement machine hardware-info show - operator paths (2); operator terms (1)
+- [#2430](https://github.com/NVIDIA/infra-controller/pull/2430) chore: Clean up cloud-unsafe-op logic in admin-cli - operator paths (22); operator terms (1)
+- [#2434](https://github.com/NVIDIA/infra-controller/pull/2434) ci: split release-container tests into separate job - operator paths (2)
+- [#2436](https://github.com/NVIDIA/infra-controller/pull/2436) NICo infra fixes + blank site templates - operator paths (8); operator terms (3)
+- [#2476](https://github.com/NVIDIA/infra-controller/pull/2476) Dev env arm64 support - operator paths (3); operator terms (1)
+- [#2499](https://github.com/NVIDIA/infra-controller/pull/2499) test(admin-cli): fold command tests onto carbide-test-support - operator paths (59); operator terms (2)
+- [#2514](https://github.com/NVIDIA/infra-controller/pull/2514) fix(admin-cli): work with API servers that predate renamed health RPCs - operator paths (1); operator terms (2)
+- [#2548](https://github.com/NVIDIA/infra-controller/pull/2548) [#2060] fix: rename forge.local to nico.local - operator paths (3); operator terms (1)
+- [#2570](https://github.com/NVIDIA/infra-controller/pull/2570) test(admin-cli): group command tables into scenarios - operator paths (57); operator terms (1)
+- [#2612](https://github.com/NVIDIA/infra-controller/pull/2612) feat(helm): Added fnn section in nico-core.yaml - operator terms (2)
+- [#2625](https://github.com/NVIDIA/infra-controller/pull/2625) Fix devspace build after nico rename - operator paths (1)
+- [#2663](https://github.com/NVIDIA/infra-controller/pull/2663) Fix ignored file in devspace build - operator paths (3); operator terms (1)
+- [#2675](https://github.com/NVIDIA/infra-controller/pull/2675) fix(setup.sh): set Temporal namespace retention on create - operator terms (2)
+- [#2680](https://github.com/NVIDIA/infra-controller/pull/2680) feat: update to Rust 1.96 - operator paths (7); operator terms (1)
+- [#2710](https://github.com/NVIDIA/infra-controller/pull/2710) test: collapse per-variant test clusters in ib-fabric, admin-cli, and libmlx - operator paths (6); operator terms (1)
+- [#2756](https://github.com/NVIDIA/infra-controller/pull/2756) feat: resolve scout firmware upgrade scripts from static assets - operator paths (7); operator terms (3)
+- [#2760](https://github.com/NVIDIA/infra-controller/pull/2760) fix(helm-prereqs): Add switch_nvos vault policy paths for switch ingestion - operator terms (2)
+- [#2781](https://github.com/NVIDIA/infra-controller/pull/2781) docs(helm): document required resource pools in site config - operator paths (3); operator terms (5)
+- [#2782](https://github.com/NVIDIA/infra-controller/pull/2782) fix(health): report BMC intrusion events - operator paths (2); operator terms (2)
+- [#2788](https://github.com/NVIDIA/infra-controller/pull/2788) fix(site-explorer): Derive DPU base MAC from BMC eth0 offset fallback - operator terms (2)
+- [#2813](https://github.com/NVIDIA/infra-controller/pull/2813) fix(helm): correct boot-artifacts mount path and remove readOnly - operator paths (8); operator terms (5)
+- [#2824](https://github.com/NVIDIA/infra-controller/pull/2824) perf(nico-admin-cli): fetch paged list details concurrently - operator paths (2); operator terms (2)
+- [#2825](https://github.com/NVIDIA/infra-controller/pull/2825) fix(nico-api): add carbide-api.forge to default cert SANs (DPU heartbeat during carbide→nico rename) - operator paths (1); operator terms (1)
+- [#2830](https://github.com/NVIDIA/infra-controller/pull/2830) feat(admin-cli): add rack state-history command - operator paths (7); operator terms (3)
+- [#2837](https://github.com/NVIDIA/infra-controller/pull/2837) ci: build arm64 multi-arch images (nvmetal-carbide, boot-artifacts, machine_validation) - operator paths (1); operator terms (1)
+- [#2845](https://github.com/NVIDIA/infra-controller/pull/2845) fix: bump libredfish to v0.44.14 - operator terms (2)
+- [#2854](https://github.com/NVIDIA/infra-controller/pull/2854) fix: bump libredfish to v0.44.15 - operator terms (2)
+- [#2860](https://github.com/NVIDIA/infra-controller/pull/2860) Adding decline-probation-period to kea config - operator paths (7); operator terms (2)
+- [#2874](https://github.com/NVIDIA/infra-controller/pull/2874) fix(admin-cli): cap paged chunk size to the server's max_find_by_ids - operator paths (1); operator terms (2)
+- [#2889](https://github.com/NVIDIA/infra-controller/pull/2889) chore: bump libredfish to v0.44.16 - operator terms (2)
+- [#2942](https://github.com/NVIDIA/infra-controller/pull/2942) fix(site-agent): use mTLS for Flow gRPC and protect temporal-certs secret - operator paths (2); operator terms (2)
+- [#2953](https://github.com/NVIDIA/infra-controller/pull/2953) chore(admin-cli): realign straggling commands onto Dispatch + Run - operator paths (46); operator terms (2)
+- [#2956](https://github.com/NVIDIA/infra-controller/pull/2956) fix(ssh-console): add opt-in IPMI SOL conflict recovery - operator paths (2); operator terms (2)
+- [#2975](https://github.com/NVIDIA/infra-controller/pull/2975) fix: skip zero size block devices when scrabbing - operator terms (2)
+- [#2978](https://github.com/NVIDIA/infra-controller/pull/2978) fix: dpf: Move machine into correct state on failure and allow restart of reprovisioning when dpf fails. - operator terms (2)
+- [#2997](https://github.com/NVIDIA/infra-controller/pull/2997) Updated to the current iPXE, ported patches across. - operator terms (2)
+- [#3000](https://github.com/NVIDIA/infra-controller/pull/3000) fix: rename dev/mac-local-dev/run-carbide-api.sh to run-nico-api.sh - operator paths (4); operator terms (1)
+- [#3030](https://github.com/NVIDIA/infra-controller/pull/3030) fix: gracefully handle unexpected CreateBossVolumeState - operator terms (2)
+
+## API/Reference Docs Possibly Needed
+
+- [#1813](https://github.com/NVIDIA/infra-controller/pull/1813) (feat) rvs: implement SOT artifact caching pipeline and HTTP cache server - API terms (3)
+- [#1977](https://github.com/NVIDIA/infra-controller/pull/1977) feat(api-model): parse UEFI device paths with 1..N PCI nodes - API/reference paths (1); API terms (2)
+- [#2018](https://github.com/NVIDIA/infra-controller/pull/2018) add node exporter sidecar - API terms (2)
+- [#2047](https://github.com/NVIDIA/infra-controller/pull/2047) Fix Fern preview build workflow - API terms (2)
+- [#2074](https://github.com/NVIDIA/infra-controller/pull/2074) feat: Allow user to provide a custom imagepullsecret for the mandatoy services. - API/reference paths (2)
+- [#2116](https://github.com/NVIDIA/infra-controller/pull/2116) chore(rest-api): Apply our FromProto/ToProto modeling to InfiniBandPartition - API/reference paths (14); API terms (7)
+- [#2122](https://github.com/NVIDIA/infra-controller/pull/2122) chore(rest-api): Apply our FromProto/ToProto modeling to NVLinkLogicalPartition - API/reference paths (19); API terms (7)
+- [#2128](https://github.com/NVIDIA/infra-controller/pull/2128) chore: Add general CodeRabbit directives, specific instructions for REST API - API terms (2)
+- [#2129](https://github.com/NVIDIA/infra-controller/pull/2129) refactor(test-support): move secrets test fixtures behind feature - API/reference paths (12); API terms (1)
+- [#2130](https://github.com/NVIDIA/infra-controller/pull/2130) fix: wired direct path for rms firmware update - API/reference paths (4)
+- [#2135](https://github.com/NVIDIA/infra-controller/pull/2135) fix(preingestion): skip/return on BFB path(s) for NIC-mode DPUs - API/reference paths (3)
+- [#2139](https://github.com/NVIDIA/infra-controller/pull/2139) chore(rest-api): Apply our new FromProto/ToProto modeling to Machine - API/reference paths (3); API terms (5)
+- [#2140](https://github.com/NVIDIA/infra-controller/pull/2140) chore(rest-api): Apply our FromProto/ToProto modeling to the Instance delete flow - API/reference paths (7); API terms (5)
+- [#2142](https://github.com/NVIDIA/infra-controller/pull/2142) feat: Add core component manager integration for compute tray in Flow - API/reference paths (13)
+- [#2150](https://github.com/NVIDIA/infra-controller/pull/2150) fix(rest-api): Populate RoutingProfileType directly from the controller value - API/reference paths (1); API terms (3)
+- [#2153](https://github.com/NVIDIA/infra-controller/pull/2153) ci(rest): post-migration cleanup - API/reference paths (23); API terms (2)
+- [#2160](https://github.com/NVIDIA/infra-controller/pull/2160) Otel transceiver fix - defaulted to API/reference on weak signals
+- [#2161](https://github.com/NVIDIA/infra-controller/pull/2161) fix: Auto-restart DPU when site explorer hits missing HostPrivilegeLevel - API/reference paths (6)
+- [#2162](https://github.com/NVIDIA/infra-controller/pull/2162) feat: Add shared rule validation framework - API/reference paths (13)
+- [#2164](https://github.com/NVIDIA/infra-controller/pull/2164) chore(macros): remove unused dependencies from crate - defaulted to API/reference on weak signals
+- [#2168](https://github.com/NVIDIA/infra-controller/pull/2168) feat: health metrics contain machine id - API/reference paths (12)
+- [#2170](https://github.com/NVIDIA/infra-controller/pull/2170) fix(rest-api): Include NVLink/DPU Ext. Deployments when updating Instance metadata - API/reference paths (2); API terms (2)
+- [#2171](https://github.com/NVIDIA/infra-controller/pull/2171) refactor(rest-api): Use our generic cdb.GetPtr instead of per-type GetXPtr helpers - API/reference paths (230); API terms (2)
+- [#2173](https://github.com/NVIDIA/infra-controller/pull/2173) chore(rest-api): Apply the new FromProto/ToProto modeling to SKU - API/reference paths (4); API terms (5)
+- [#2177](https://github.com/NVIDIA/infra-controller/pull/2177) chore(rest-api): Apply the new FromProto/ToProto modeling to SSHKeyGroup - API/reference paths (3); API terms (6)
+- [#2178](https://github.com/NVIDIA/infra-controller/pull/2178) chore(rest-api): Apply the FromProto/ToProto modeling to OperatingSystem - API/reference paths (6); API terms (5)
+- [#2180](https://github.com/NVIDIA/infra-controller/pull/2180) chore(rest-api): Apply FromProto/ToProto modeling to Subnet - API/reference paths (6); API terms (6)
+- [#2181](https://github.com/NVIDIA/infra-controller/pull/2181) test: remove stale sqlx migrator references - API/reference paths (4)
+- [#2182](https://github.com/NVIDIA/infra-controller/pull/2182) docs(configuration): add Configurability guide FORGE-8271 - API terms (2)
+- [#2183](https://github.com/NVIDIA/infra-controller/pull/2183) chore(rest-api): Apply FromProto/ToProto modeling to VpcPeering - API/reference paths (5); API terms (6)
+- [#2184](https://github.com/NVIDIA/infra-controller/pull/2184) chore(rest-api): Apply FromProto/ToProto modeling to DpuExtensionService - API/reference paths (5); API terms (5)
+- [#2185](https://github.com/NVIDIA/infra-controller/pull/2185) chore(rest-api): Apply FromProto/ToProto modeling to NetworkSecurityGroup - API/reference paths (7); API terms (5)
+- [#2187](https://github.com/NVIDIA/infra-controller/pull/2187) chore(rest-api): Apply FromProto/ToProto modeling to VpcPrefix - API/reference paths (5); API terms (6)
+- [#2189](https://github.com/NVIDIA/infra-controller/pull/2189) chore(rest-api): Use Labels.ToProto() in entity ToProto methods - API/reference paths (5); API terms (2)
+- [#2190](https://github.com/NVIDIA/infra-controller/pull/2190) fix: Run power manager only when machine is in Ready state. - defaulted to API/reference on weak signals
+- [#2191](https://github.com/NVIDIA/infra-controller/pull/2191) Support for setting multicast group limits on nvlink partitions - API/reference paths (5)
+- [#2194](https://github.com/NVIDIA/infra-controller/pull/2194) feat: Add MCP read-only server mode - API/reference paths (18); API terms (2)
+- [#2195](https://github.com/NVIDIA/infra-controller/pull/2195) feat(rpc): gate prost builders behind test-support - API/reference paths (5); API terms (2)
+- [#2197](https://github.com/NVIDIA/infra-controller/pull/2197) feat: mandatory bmc reset in preingestion - API/reference paths (4); API terms (1)
+- [#2198](https://github.com/NVIDIA/infra-controller/pull/2198) feat(component-manager): wire power shelf and switch controllers thro… - API/reference paths (6); API terms (1)
+- [#2203](https://github.com/NVIDIA/infra-controller/pull/2203) fix: Render correct tenant cloud-init for zero-dpu hosts - API/reference paths (4)
+- [#2204](https://github.com/NVIDIA/infra-controller/pull/2204) chore(rest-api): Move entity equality checks onto the entities themselves - API/reference paths (10); API terms (2)
+- [#2208](https://github.com/NVIDIA/infra-controller/pull/2208) chore(rest-api): Inline basic deletion-request protos in handlers - API/reference paths (6); API terms (5)
+- [#2215](https://github.com/NVIDIA/infra-controller/pull/2215) [#2210] bug: fix metadata identity API call from host instance - API/reference paths (2); API terms (5)
+- [#2217](https://github.com/NVIDIA/infra-controller/pull/2217) fix: drop NICO_REST_REPO / NICO_REPO env vars - API/reference paths (1); API terms (2)
+- [#2220](https://github.com/NVIDIA/infra-controller/pull/2220) feat(rest-api): Infer Provider/Tenant from caller's org - API/reference paths (18); API terms (4)
+- [#2222](https://github.com/NVIDIA/infra-controller/pull/2222) docs: align main README with helm-prereqs and complete ncx → nico rename - API terms (1)
+- [#2229](https://github.com/NVIDIA/infra-controller/pull/2229) ci: Add CI jobs to detect proto/OpenAPI breaking changes - API/reference paths (1); API terms (5)
+- [#2235](https://github.com/NVIDIA/infra-controller/pull/2235) fix: fallback to lenovo fw config for lenovo-ami machines - API terms (2)
+- [#2247](https://github.com/NVIDIA/infra-controller/pull/2247) chore: bump DPF version to v26.4.0-rc4 - defaulted to API/reference on weak signals
+- [#2250](https://github.com/NVIDIA/infra-controller/pull/2250) test: extract site explorer power shelf tests - API/reference paths (5); API terms (1)
+- [#2252](https://github.com/NVIDIA/infra-controller/pull/2252) fix: Keep hostname and IP Address in sync during stale IP cleanup and reallocation - API/reference paths (3)
+- [#2253](https://github.com/NVIDIA/infra-controller/pull/2253) fix(sku): reject empty SKU ID on create and replace - API/reference paths (2); API terms (1)
+- [#2257](https://github.com/NVIDIA/infra-controller/pull/2257) nvue-client: Use slightly stronger types for NvueConfig - API terms (2)
+- [#2260](https://github.com/NVIDIA/infra-controller/pull/2260) fix(preingestion): make BMC time-sync failures recoverable - API/reference paths (5); API terms (1)
+- [#2264](https://github.com/NVIDIA/infra-controller/pull/2264) feat: Add ComponentStatus model in Flow — derive, persist, and surface per-component readiness - API/reference paths (26); API terms (4)
+- [#2265](https://github.com/NVIDIA/infra-controller/pull/2265) chore(rest-api): Set default phone home URL to use dedicated IP - API/reference paths (2); API terms (2)
+- [#2268](https://github.com/NVIDIA/infra-controller/pull/2268) fix: Fixes for OTLP tracing - API/reference paths (3)
+- [#2271](https://github.com/NVIDIA/infra-controller/pull/2271) Don't run both check-format-flow and check-format-nightly in pre-comm… - defaulted to API/reference on weak signals
+- [#2276](https://github.com/NVIDIA/infra-controller/pull/2276) feat: Log every gRPC call on server and client paths in Flow - API/reference paths (8); API terms (2)
+- [#2279](https://github.com/NVIDIA/infra-controller/pull/2279) chore: raise the metadata label cap from 10 to 16 - API/reference paths (2)
+- [#2281](https://github.com/NVIDIA/infra-controller/pull/2281) fix(build): conflicting merge compilation bug fixed - API/reference paths (1)
+- [#2284](https://github.com/NVIDIA/infra-controller/pull/2284) feat(health): suppress unchanged success-only reports within configurable interval - API terms (1)
+- [#2286](https://github.com/NVIDIA/infra-controller/pull/2286) feat: Add Task Rule REST APIs for Flow Operation Rule Management - API/reference paths (49); API terms (8)
+- [#2289](https://github.com/NVIDIA/infra-controller/pull/2289) feat(rest-api): Support selective hot-loading for API config, enable for phone home URL - API/reference paths (4); API terms (4)
+- [#2290](https://github.com/NVIDIA/infra-controller/pull/2290) fix: normalize IPv6 DNS instance hostnames - API/reference paths (2); API terms (1)
+- [#2295](https://github.com/NVIDIA/infra-controller/pull/2295) feat(api-web): add/remove SKU from a machine in admin UI - API/reference paths (4); API terms (1)
+- [#2300](https://github.com/NVIDIA/infra-controller/pull/2300) fix(sku): add DB CHECK backstop rejecting empty SKU ID - API/reference paths (1)
+- [#2301](https://github.com/NVIDIA/infra-controller/pull/2301) fix: correct several incorrect error messages (DPU reprovision, DPA) - API/reference paths (2); operator paths also present (1)
+- [#2308](https://github.com/NVIDIA/infra-controller/pull/2308) chore(rest-api): Migrate Tenant and Fabric DAOs to use param structs - API/reference paths (21); API terms (2)
+- [#2309](https://github.com/NVIDIA/infra-controller/pull/2309) test(nvue-client): read REPO_ROOT at runtime for config tests - defaulted to API/reference on weak signals
+- [#2310](https://github.com/NVIDIA/infra-controller/pull/2310) feat(rest-api): write all expected-inventory device metadata to Core - API/reference paths (5); API terms (4)
+- [#2311](https://github.com/NVIDIA/infra-controller/pull/2311) feat: store every NIC interface ID, not just DPU interface IDs - API/reference paths (3)
+- [#2312](https://github.com/NVIDIA/infra-controller/pull/2312) test(site-explorer): split focused integration tests into crate - API/reference paths (1); API terms (1)
+- [#2313](https://github.com/NVIDIA/infra-controller/pull/2313) fix(rest-api): Allow privileged Tenants to retrieve Expected Machines without specifying Site ID - API/reference paths (2); API terms (2)
+- [#2317](https://github.com/NVIDIA/infra-controller/pull/2317) fix(scout): skip USB media during HDD cleanup - defaulted to API/reference on weak signals
+- [#2318](https://github.com/NVIDIA/infra-controller/pull/2318) test(api-core): prepare DPU/host fixtures for api-model move - API/reference paths (5); API terms (2)
+- [#2320](https://github.com/NVIDIA/infra-controller/pull/2320) feat(machine-a-tron): register expected switches and power shelves - defaulted to API/reference on weak signals
+- [#2322](https://github.com/NVIDIA/infra-controller/pull/2322) feat: add support to ingest delta powershelves - API/reference paths (2); operator paths also present (1)
+- [#2323](https://github.com/NVIDIA/infra-controller/pull/2323) fix: DPU Extension Service status only include used DPUs - API/reference paths (8); API terms (1)
+- [#2326](https://github.com/NVIDIA/infra-controller/pull/2326) fix(machine-validation): reconcile stale active runs safely - API/reference paths (7); API terms (3)
+- [#2332](https://github.com/NVIDIA/infra-controller/pull/2332) machine-a-tron: Drop support for non-api PXE requests - API/reference paths (1); API terms (3)
+- [#2333](https://github.com/NVIDIA/infra-controller/pull/2333) fix(pxe): Remove the OVS dependencies key from internal patch port - defaulted to API/reference on weak signals
+- [#2338](https://github.com/NVIDIA/infra-controller/pull/2338) api-core: Parse dhcp_servers and route_servers as IP addresses - API/reference paths (4); API terms (1)
+- [#2341](https://github.com/NVIDIA/infra-controller/pull/2341) fix(api): Make instances with host-inband config ready immediately - API/reference paths (3); API terms (1)
+- [#2342](https://github.com/NVIDIA/infra-controller/pull/2342) fix(rest-api): Treat instance status consistently across reporting, filtering, and statistics - API/reference paths (42); API terms (3)
+- [#2343](https://github.com/NVIDIA/infra-controller/pull/2343) chore: bump libredfish to v0.44.10 - defaulted to API/reference on weak signals
+- [#2347](https://github.com/NVIDIA/infra-controller/pull/2347) fix(rest-api): Check IP Usage for requested Prefix before creating or updating Instance - API/reference paths (6); API terms (2)
+- [#2348](https://github.com/NVIDIA/infra-controller/pull/2348) test(core-api): Move code that need to be shared from fixtures - API/reference paths (38); API terms (2)
+- [#2353](https://github.com/NVIDIA/infra-controller/pull/2353) fix: Align nicocli command names and prompts with the API - API/reference paths (4); API terms (2)
+- [#2361](https://github.com/NVIDIA/infra-controller/pull/2361) feat: pick how machines get their hostnames (IP, serial, mac, fun names, etc) - API/reference paths (9)
+- [#2362](https://github.com/NVIDIA/infra-controller/pull/2362) fix(health): bracket IPv6 addresses in BMC base URLs - API/reference paths (1)
+- [#2363](https://github.com/NVIDIA/infra-controller/pull/2363) chore(rest-api): Migrate AllocationConstraint and Domain DAOs to use param structs - API/reference paths (20); API terms (2)
+- [#2366](https://github.com/NVIDIA/infra-controller/pull/2366) fix: correctly type BmcInfo IP addresses as IpAddr - API/reference paths (18); API terms (2)
+- [#2367](https://github.com/NVIDIA/infra-controller/pull/2367) feat(site-explorer): power cycle [not just Dell] to apply a queued NIC mode change - API/reference paths (3)
+- [#2368](https://github.com/NVIDIA/infra-controller/pull/2368) fix(dhcp): strongly type IP address lists in kea - defaulted to API/reference on weak signals
+- [#2369](https://github.com/NVIDIA/infra-controller/pull/2369) fix: correctly type the ExpectedHostNic.fixed_ip as IpAddr - API/reference paths (5); API terms (1)
+- [#2370](https://github.com/NVIDIA/infra-controller/pull/2370) fix: Update golang.org/x/crypto and x/net for security advisories - API/reference paths (2); API terms (2)
+- [#2371](https://github.com/NVIDIA/infra-controller/pull/2371) fix: IpAddr typing on configured network prefixes and gateways - API/reference paths (5)
+- [#2373](https://github.com/NVIDIA/infra-controller/pull/2373) fix: Update go-jose/go-jose/v4 to v4.1.4 for JWE decryption panic - API/reference paths (2); API terms (3)
+- [#2374](https://github.com/NVIDIA/infra-controller/pull/2374) fix: Update OpenTelemetry modules to v1.43.0 for security advisories - API/reference paths (5); API terms (3)
+- [#2375](https://github.com/NVIDIA/infra-controller/pull/2375) fix: Update github.com/buger/jsonparser to v1.1.2 for denial of service fix - API/reference paths (2); API terms (3)
+- [#2377](https://github.com/NVIDIA/infra-controller/pull/2377) test(api-core): move out more site-explorer tests - API/reference paths (1); API terms (1)
+- [#2378](https://github.com/NVIDIA/infra-controller/pull/2378) fix: reject malformed expected host NIC MACs - API/reference paths (1); API terms (2)
+- [#2379](https://github.com/NVIDIA/infra-controller/pull/2379) docs(rest-api): Add missing attribute descriptions in OpenAPI schema, fix all lint errors - API/reference paths (291); API terms (4)
+- [#2416](https://github.com/NVIDIA/infra-controller/pull/2416) Allow seeding carbide-api-config with VPCs - API/reference paths (9); API terms (1)
+- [#2418](https://github.com/NVIDIA/infra-controller/pull/2418) feat(component-manager): wire compute tray management through RMS bac… - API/reference paths (1)
+- [#2433](https://github.com/NVIDIA/infra-controller/pull/2433) feat: hardware-health fetch non sensor data metrics - API terms (1)
+- [#2437](https://github.com/NVIDIA/infra-controller/pull/2437) test: introduce nico-test-support (w/ some usage examples across a few crates) - API/reference paths (6); API terms (2)
+- [#2439](https://github.com/NVIDIA/infra-controller/pull/2439) fix(component-manager): route fw update requests through the host reprovisioning flow for non rack-scale systems - API/reference paths (1)
+- [#2440](https://github.com/NVIDIA/infra-controller/pull/2440) feat: Mirror Core expected inventory into Flow tables - API/reference paths (23); API terms (2)
+- [#2448](https://github.com/NVIDIA/infra-controller/pull/2448) feat: preserve MachineBootInterface information across machine/interface deletion - API/reference paths (38)
+- [#2451](https://github.com/NVIDIA/infra-controller/pull/2451) fix: IpAddr-typed explored endpoint addresses for linked expected components - API/reference paths (10); API terms (2)
+- [#2452](https://github.com/NVIDIA/infra-controller/pull/2452) fix: strongly type LLDP management addresses as IpAddr - API/reference paths (2); API terms (2)
+- [#2453](https://github.com/NVIDIA/infra-controller/pull/2453) fix(dpf): strongly type DPF BMC addresses as IpAddr - defaulted to API/reference on weak signals
+- [#2454](https://github.com/NVIDIA/infra-controller/pull/2454) fix: strongly type expected host NIC fixed gateways as IpAddr - API/reference paths (3); API terms (1)
+- [#2455](https://github.com/NVIDIA/infra-controller/pull/2455) fix(agent): strongly type NVUE config addresses as IpAddr (one case of Ipv4Addr) - API terms (1)
+- [#2457](https://github.com/NVIDIA/infra-controller/pull/2457) fix: correctly type various service listen and endpoint addresses - API/reference paths (1); API terms (1)
+- [#2458](https://github.com/NVIDIA/infra-controller/pull/2458) fix(dhcp): correctly type DHCP Option 50 as an IP address within Kea - API terms (1)
+- [#2460](https://github.com/NVIDIA/infra-controller/pull/2460) fix(rest-api): share SQL IP address typing between nvswitch and powershelf - API/reference paths (10); API terms (3)
+- [#2461](https://github.com/NVIDIA/infra-controller/pull/2461) Chore: Connect Flow ReadinessGate to Component Status - API/reference paths (40); API terms (2)
+- [#2467](https://github.com/NVIDIA/infra-controller/pull/2467) feat(rest-api): Add DPU target for Tray firmware update API - API/reference paths (18); API terms (4)
+- [#2468](https://github.com/NVIDIA/infra-controller/pull/2468) fix: DPF: NICo should not check dpu-agent upgrade for DPF managed DPUs. - API/reference paths (3)
+- [#2472](https://github.com/NVIDIA/infra-controller/pull/2472) refactor: rename forge_secrets to carbide_secrets - API/reference paths (42); operator paths also present (2)
+- [#2475](https://github.com/NVIDIA/infra-controller/pull/2475) test: add an async variant + better integrated error checking - API/reference paths (8); API terms (2)
+- [#2477](https://github.com/NVIDIA/infra-controller/pull/2477) feat: Add generic Core gRPC proxy and BMC credential endpoints - API/reference paths (22); API terms (10)
+- [#2479](https://github.com/NVIDIA/infra-controller/pull/2479) feat: Add operation run foundation - API/reference paths (15); API terms (1)
+- [#2480](https://github.com/NVIDIA/infra-controller/pull/2480) fix(rest-api): Validate MAC if provided in Expected Machine update request - API/reference paths (2); API terms (3)
+- [#2482](https://github.com/NVIDIA/infra-controller/pull/2482) ci: Enable Flow module tests - API/reference paths (5); API terms (2)
+- [#2483](https://github.com/NVIDIA/infra-controller/pull/2483) fix: secrets crate renaming conflicted with RMS changes - defaulted to API/reference on weak signals
+- [#2488](https://github.com/NVIDIA/infra-controller/pull/2488) fix(machine-validation): skip reboot when disabled - API/reference paths (2); API terms (1)
+- [#2489](https://github.com/NVIDIA/infra-controller/pull/2489) fix: Keep Flow mirror off in actual-sync inventory tests - API/reference paths (1)
+- [#2491](https://github.com/NVIDIA/infra-controller/pull/2491) feat: Set component leak_status from leak-detection loop in Flow - API/reference paths (9)
+- [#2500](https://github.com/NVIDIA/infra-controller/pull/2500) feat(librms): `v0.9.0-rc1` for hardware type-specific support - API/reference paths (21); API terms (6)
+- [#2501](https://github.com/NVIDIA/infra-controller/pull/2501) feat: more consistently resolve the machine boot interface - API/reference paths (7); API terms (1)
+- [#2502](https://github.com/NVIDIA/infra-controller/pull/2502) test(api-model): fold tests onto carbide-test-support - API/reference paths (21); API terms (2)
+- [#2503](https://github.com/NVIDIA/infra-controller/pull/2503) test(rpc): fold conversion tests onto carbide-test-support - API/reference paths (17); API terms (3)
+- [#2504](https://github.com/NVIDIA/infra-controller/pull/2504) Limit the number of resets after firmware upgrade to avoid endless loops - API/reference paths (2)
+- [#2505](https://github.com/NVIDIA/infra-controller/pull/2505) feat: DPF: default dpf_enabled to true for expected machines - API/reference paths (5); operator paths also present (2)
+- [#2509](https://github.com/NVIDIA/infra-controller/pull/2509) fix: don't request re-exploration after preingestion BMC reset - API terms (1)
+- [#2511](https://github.com/NVIDIA/infra-controller/pull/2511) fix(api,state-controller): Add cloud-init and state-machine fix for link-type flip - API/reference paths (3); API terms (3)
+- [#2513](https://github.com/NVIDIA/infra-controller/pull/2513) fix(component-manager): always route f/w updates for non rack-scale servers through the host reprovisioning flow - API/reference paths (1)
+- [#2516](https://github.com/NVIDIA/infra-controller/pull/2516) test(libmlx): add enumerated table-driven cases to raise coverage - defaulted to API/reference on weak signals
+- [#2517](https://github.com/NVIDIA/infra-controller/pull/2517) chore: default to RMS as the backend for component manager - API/reference paths (5)
+- [#2519](https://github.com/NVIDIA/infra-controller/pull/2519) chore(ci): enable nsm and psm module tests - API/reference paths (1)
+- [#2521](https://github.com/NVIDIA/infra-controller/pull/2521) feat: Include switch NVOS IP in Flow component/tray description - API/reference paths (5)
+- [#2523](https://github.com/NVIDIA/infra-controller/pull/2523) test(host-support): fold tests onto carbide-test-support + enumerate cases to raise coverage - defaulted to API/reference on weak signals
+- [#2524](https://github.com/NVIDIA/infra-controller/pull/2524) test(api-core): Site explorer chain test refactoring and zero-dpu tests move - API/reference paths (4); API terms (1)
+- [#2525](https://github.com/NVIDIA/infra-controller/pull/2525) fix(rest-api): Match available Machines for InstanceType against incoming InfiniBand Interface request - API/reference paths (6); API terms (3)
+- [#2528](https://github.com/NVIDIA/infra-controller/pull/2528) feat: resolve the boot interface for machines awaiting their first lease - API/reference paths (7)
+- [#2530](https://github.com/NVIDIA/infra-controller/pull/2530) test(dpf): fold onto carbide-test-support + enumerate flavor/types cases - defaulted to API/reference on weak signals
+- [#2537](https://github.com/NVIDIA/infra-controller/pull/2537) fix: Drop firmware_version from expected-inventory metadata - API/reference paths (5)
+- [#2538](https://github.com/NVIDIA/infra-controller/pull/2538) test(network): fold onto carbide-test-support + enumerate cases to raise coverage - defaulted to API/reference on weak signals
+- [#2539](https://github.com/NVIDIA/infra-controller/pull/2539) feat(rest-api): Add DPU machine retrieval endpoint - API/reference paths (94); API terms (7)
+- [#2542](https://github.com/NVIDIA/infra-controller/pull/2542) chore(rest-api): Migrate SSH key association DAOs to param structs - API/reference paths (23); API terms (2)
+- [#2543](https://github.com/NVIDIA/infra-controller/pull/2543) chore: Enable auto CodeRabbit review, enhance review instructions - defaulted to API/reference on weak signals
+- [#2544](https://github.com/NVIDIA/infra-controller/pull/2544) feat(rest-api): Remove firmware_version from expected inventory APIs - API/reference paths (29); API terms (5)
+- [#2545](https://github.com/NVIDIA/infra-controller/pull/2545) test(api-core): site explorer health tests move - API/reference paths (5); API terms (1)
+- [#2547](https://github.com/NVIDIA/infra-controller/pull/2547) test(api-model): enumerate cases to raise coverage - API/reference paths (25); API terms (3)
+- [#2550](https://github.com/NVIDIA/infra-controller/pull/2550) perf(site-explorer): reduce audit database work - API/reference paths (1); API terms (2)
+- [#2551](https://github.com/NVIDIA/infra-controller/pull/2551) test(uuid): fold ID tests onto carbide-test-support + raise coverage - defaulted to API/reference on weak signals
+- [#2552](https://github.com/NVIDIA/infra-controller/pull/2552) test(mqttea): fold helper tests onto carbide-test-support + raise coverage - defaulted to API/reference on weak signals
+- [#2553](https://github.com/NVIDIA/infra-controller/pull/2553) test(config-version): fold tests onto carbide-test-support + raise coverage - defaulted to API/reference on weak signals
+- [#2554](https://github.com/NVIDIA/infra-controller/pull/2554) test(dns-record): fold record tests onto carbide-test-support + raise coverage - defaulted to API/reference on weak signals
+- [#2555](https://github.com/NVIDIA/infra-controller/pull/2555) test(health): fold event tests onto carbide-test-support + raise coverage - API terms (2)
+- [#2556](https://github.com/NVIDIA/infra-controller/pull/2556) test(bmc-proxy): fold helper tests onto carbide-test-support + raise coverage - API terms (1)
+- [#2557](https://github.com/NVIDIA/infra-controller/pull/2557) tests(api-web): use test harness fixtures in api-web tests - API/reference paths (11); API terms (1)
+- [#2564](https://github.com/NVIDIA/infra-controller/pull/2564) test(rpc): group conversion tables into scenarios - API/reference paths (14); API terms (2)
+- [#2572](https://github.com/NVIDIA/infra-controller/pull/2572) test(api-model): group model tables into scenarios - API/reference paths (32); API terms (2)
+- [#2576](https://github.com/NVIDIA/infra-controller/pull/2576) test(rpc-utils): improve coverage for dhcp and display helpers - API terms (1)
+- [#2577](https://github.com/NVIDIA/infra-controller/pull/2577) test(tls): improve test coverage for client config resolution - API terms (1)
+- [#2583](https://github.com/NVIDIA/infra-controller/pull/2583) Fix iPXE NICo branding - defaulted to API/reference on weak signals
+- [#2586](https://github.com/NVIDIA/infra-controller/pull/2586) feat(errors): add operator error schema - API/reference paths (11); API terms (6)
+- [#2589](https://github.com/NVIDIA/infra-controller/pull/2589) feat(rest-api): Auto-create Site IP Blocks from Site fabric prefixes - API/reference paths (19); API terms (3)
+- [#2593](https://github.com/NVIDIA/infra-controller/pull/2593) fix: get the nmx-c endpoint from information populated as part of nvswitch ingestion and configuration when available. - API/reference paths (10); API terms (1)
+- [#2596](https://github.com/NVIDIA/infra-controller/pull/2596) ci(core): add Grype scan for shipped containers on PR builds - API terms (1)
+- [#2610](https://github.com/NVIDIA/infra-controller/pull/2610) feat: Set NTP servers from site config - API/reference paths (14); API terms (3)
+- [#2618](https://github.com/NVIDIA/infra-controller/pull/2618) test(api-db): Move DB-only expected inventory tests to api-db crate - API/reference paths (14); API terms (1)
+- [#2623](https://github.com/NVIDIA/infra-controller/pull/2623) fix(rest-postgres): idempotent DB init so a partial init can't silently drop databases - API/reference paths (1); API terms (2)
+- [#2646](https://github.com/NVIDIA/infra-controller/pull/2646) test(machine-controller): move machine setup test from api-core - API/reference paths (2); API terms (1)
+- [#2648](https://github.com/NVIDIA/infra-controller/pull/2648) Clean up debug printlns in api-core - API/reference paths (1); API terms (1)
+- [#2652](https://github.com/NVIDIA/infra-controller/pull/2652) test(api-db): Move DB-only API tests from api-core into api-db - API/reference paths (17); API terms (1)
+- [#2655](https://github.com/NVIDIA/infra-controller/pull/2655) fix: turn on FNN in struct used during site creation - API/reference paths (4)
+- [#2664](https://github.com/NVIDIA/infra-controller/pull/2664) Fix No-DPF warning message for zero-dpu deployments - API/reference paths (1)
+- [#2670](https://github.com/NVIDIA/infra-controller/pull/2670) [bug/5614743] fix: scout repeatedly fails machine discovery with 'AttestKeyInfo is not populated' error - API terms (2)
+- [#2681](https://github.com/NVIDIA/infra-controller/pull/2681) fix(nvlink): Multicast group limit attribute, when creating a partiti… - defaulted to API/reference on weak signals
+- [#2686](https://github.com/NVIDIA/infra-controller/pull/2686) feat(dhcp): include the host's IPv6 DNS resolvers in the agent's DHCP config - API terms (3)
+- [#2690](https://github.com/NVIDIA/infra-controller/pull/2690) feat: honor a declared primary host NIC when selecting the boot device - API/reference paths (8); API terms (1)
+- [#2701](https://github.com/NVIDIA/infra-controller/pull/2701) feat(rest-api): return valid JSON from DELETE endpoints - API/reference paths (46); API terms (8)
+- [#2704](https://github.com/NVIDIA/infra-controller/pull/2704) fix(site-explorer): widen duration histogram buckets - API/reference paths (1); API terms (1)
+- [#2708](https://github.com/NVIDIA/infra-controller/pull/2708) test(mqttea,dpf): fold per-case error and node-label tests into tables - defaulted to API/reference on weak signals
+- [#2712](https://github.com/NVIDIA/infra-controller/pull/2712) feat: resolve a host's boot interface from predictions before its first lease - API/reference paths (2); API terms (2)
+- [#2713](https://github.com/NVIDIA/infra-controller/pull/2713) test(api-model,rpc,uuid): collapse per-variant clusters and drop redundant tests - API/reference paths (6); API terms (3)
+- [#2714](https://github.com/NVIDIA/infra-controller/pull/2714) test(api-db,health): consolidate duplicated CRUD and IP-candidate tests - API/reference paths (8); API terms (1)
+- [#2717](https://github.com/NVIDIA/infra-controller/pull/2717) test(api-core): parameterize cross-entity test duplication - API/reference paths (18); API terms (2)
+- [#2721](https://github.com/NVIDIA/infra-controller/pull/2721) feat: honor a declared primary NIC in the explored boot default - API/reference paths (1); API terms (3)
+- [#2722](https://github.com/NVIDIA/infra-controller/pull/2722) docs: note the full-pair requirement in fetch_host_primary_interface_mac - API/reference paths (1)
+- [#2736](https://github.com/NVIDIA/infra-controller/pull/2736) test(ssh-console): table-ify cert and escape-sequence tests; cover BmcVendor - defaulted to API/reference on weak signals
+- [#2744](https://github.com/NVIDIA/infra-controller/pull/2744) test(agent): table-ify the agent crate's parser and health tests - defaulted to API/reference on weak signals
+- [#2745](https://github.com/NVIDIA/infra-controller/pull/2745) test(small crates): adopt carbide-test-support across five parser/serde suites - API terms (2)
+- [#2749](https://github.com/NVIDIA/infra-controller/pull/2749) refactor(dns): remove the unused instance-DNS view and its SQL hostname function - API/reference paths (2); API terms (1)
+- [#2750](https://github.com/NVIDIA/infra-controller/pull/2750) docs: Add contributor engineering guidelines - API/reference paths (1)
+- [#2753](https://github.com/NVIDIA/infra-controller/pull/2753) feat: add support for lenovo gb300s - defaulted to API/reference on weak signals
+- [#2759](https://github.com/NVIDIA/infra-controller/pull/2759) chore(rest-api): Migrate Provider and Status Details DAOs to use struct params - API/reference paths (73); API terms (3)
+- [#2761](https://github.com/NVIDIA/infra-controller/pull/2761) fix: query both the vendor and OEM fields at the redfish base root to determine a BMC's vendor - defaulted to API/reference on weak signals
+- [#2762](https://github.com/NVIDIA/infra-controller/pull/2762) nvlink: NVSwitch mTLS probe - API/reference paths (5)
+- [#2763](https://github.com/NVIDIA/infra-controller/pull/2763) chore(site-explorer): switch to nv-redfish exploration by default - defaulted to API/reference on weak signals
+- [#2767](https://github.com/NVIDIA/infra-controller/pull/2767) fix: check if the UEFI password was ever set on a host before attempting to clear the password - API/reference paths (1)
+- [#2770](https://github.com/NVIDIA/infra-controller/pull/2770) fix(rest-api): Use capital case for BMC credential kind - API/reference paths (8); API terms (2)
+- [#2779](https://github.com/NVIDIA/infra-controller/pull/2779) refactor(bmc-mock): avoid cloning machine info for BMC mock setup - defaulted to API/reference on weak signals
+- [#2780](https://github.com/NVIDIA/infra-controller/pull/2780) refactor(machine-a-tron): remove persisted DHCP IDs - defaulted to API/reference on weak signals
+- [#2783](https://github.com/NVIDIA/infra-controller/pull/2783) feat(dns): remove a reverse-DNS zone with its network segment - API/reference paths (2); API terms (1)
+- [#2785](https://github.com/NVIDIA/infra-controller/pull/2785) feat: add versioned paths for the various site-wide credentials in Vault to support rotation - defaulted to API/reference on weak signals
+- [#2786](https://github.com/NVIDIA/infra-controller/pull/2786) feat(dns): serve forward A/AAAA for overlay instance addresses - API/reference paths (4)
+- [#2807](https://github.com/NVIDIA/infra-controller/pull/2807) docs: Add REST Core proxy agent guidance - API/reference paths (2); API terms (3)
+- [#2809](https://github.com/NVIDIA/infra-controller/pull/2809) fix: more changes to support lenovo GB300s - API/reference paths (1); API terms (2)
+- [#2814](https://github.com/NVIDIA/infra-controller/pull/2814) fix(pxe): always seed NoCloud userdata during imaging - defaulted to API/reference on weak signals
+- [#2815](https://github.com/NVIDIA/infra-controller/pull/2815) fix(pxe): fully write out sparse OS images - defaulted to API/reference on weak signals
+- [#2816](https://github.com/NVIDIA/infra-controller/pull/2816) feat(rest-api): Add host lifecycle profile attribute for Expected Machine - API/reference paths (12); API terms (2)
+- [#2831](https://github.com/NVIDIA/infra-controller/pull/2831) feat(health): forward Redfish diagnostic payloads from health logs - defaulted to API/reference on weak signals
+- [#2836](https://github.com/NVIDIA/infra-controller/pull/2836) docs: update CONTRIBUTING.md with cryptographic signature requirements - defaulted to API/reference on weak signals
+- [#2840](https://github.com/NVIDIA/infra-controller/pull/2840) fix(site-agent): mount Core-gRPC certs where the binary reads them + … - API/reference paths (1); API terms (1)
+- [#2844](https://github.com/NVIDIA/infra-controller/pull/2844) feat: Add operation run planning and create RPC - API/reference paths (34); API terms (1)
+- [#2848](https://github.com/NVIDIA/infra-controller/pull/2848) agent: Skip HBN configuration when config versions are unchanged - defaulted to API/reference on weak signals
+- [#2856](https://github.com/NVIDIA/infra-controller/pull/2856) chore: Upgrade Go version to 1.26.4 & modules to resolve security vulnerabilities - API/reference paths (32); operator paths also present (4)
+- [#2867](https://github.com/NVIDIA/infra-controller/pull/2867) feat(rest-api): Enhance get all VPC Peering filtering and peer Tenant visibility - API/reference paths (73); API terms (5)
+- [#2868](https://github.com/NVIDIA/infra-controller/pull/2868) feat(bmc-mock): add configurable MAC address pools - API/reference paths (2)
+- [#2871](https://github.com/NVIDIA/infra-controller/pull/2871) fixi(nvlink): safe handling of legacy/missing chassis_serial field in… - API/reference paths (1)
+- [#2873](https://github.com/NVIDIA/infra-controller/pull/2873) feat(secrets): configurable credential chain and writer - API/reference paths (3)
+- [#2882](https://github.com/NVIDIA/infra-controller/pull/2882) feat(health): enrich machine log metadata - API/reference paths (2); API terms (1)
+- [#2885](https://github.com/NVIDIA/infra-controller/pull/2885) fix(build): added diagnostic_record field in intrusion events tests - defaulted to API/reference on weak signals
+- [#2887](https://github.com/NVIDIA/infra-controller/pull/2887) feat: bmc-mock telemetry service support - defaulted to API/reference on weak signals
+- [#2890](https://github.com/NVIDIA/infra-controller/pull/2890) fix: disable endpoint refresh functionality + remove worklock dependency - API/reference paths (2); API terms (4)
+- [#2891](https://github.com/NVIDIA/infra-controller/pull/2891) metrics(site-explorer): instrument endpoint update path - API terms (1)
+- [#2894](https://github.com/NVIDIA/infra-controller/pull/2894) fix(rest-api): Add soft-deletion tag for DPU Extension Service deleted timestamp - API/reference paths (2); API terms (2)
+- [#2895](https://github.com/NVIDIA/infra-controller/pull/2895) fix(health): avoid duplicate OTLP log records when diagnostics are enabled - defaulted to API/reference on weak signals
+- [#2898](https://github.com/NVIDIA/infra-controller/pull/2898) [bug/6370832] IMDS identity API  not enforcing X-Forwarded-For header check - API terms (2)
+- [#2900](https://github.com/NVIDIA/infra-controller/pull/2900) fix(scout): skip attestation on hosts with no TPM device - API terms (1)
+- [#2902](https://github.com/NVIDIA/infra-controller/pull/2902) feat(bmc-mock): add Dell R760 BF4 hardware scaffolding - defaulted to API/reference on weak signals
+- [#2903](https://github.com/NVIDIA/infra-controller/pull/2903) fix(site-explorer): generate BF4 machine IDs from chassis serial - API/reference paths (1)
+- [#2905](https://github.com/NVIDIA/infra-controller/pull/2905) fix(rest-api): Allow correct indices for Interface virtual function ID - API/reference paths (5); API terms (2)
+- [#2906](https://github.com/NVIDIA/infra-controller/pull/2906) feat(site-explorer): pair BF4 DPUs by chassis serial - API/reference paths (1)
+- [#2908](https://github.com/NVIDIA/infra-controller/pull/2908) fix(site-agent): fix flowgrpc CrashLoopBackOff on startup - API/reference paths (2); API terms (1)
+- [#2909](https://github.com/NVIDIA/infra-controller/pull/2909) refactor(site-explorer): clarify BlueField part-number checks - API/reference paths (3); API terms (1)
+- [#2910](https://github.com/NVIDIA/infra-controller/pull/2910) feat: Adding VR hardware type to BMC explorer - API terms (1)
+- [#2911](https://github.com/NVIDIA/infra-controller/pull/2911) fix(machine-validation): address machine validation stale review feedback - API/reference paths (3); API terms (1)
+- [#2927](https://github.com/NVIDIA/infra-controller/pull/2927) test(preingestion-manager): move tests to from api-core crate - API/reference paths (2); API terms (1)
+- [#2932](https://github.com/NVIDIA/infra-controller/pull/2932) fix: GBx00 misclassified as DPU during PXE boot - API/reference paths (1); API terms (2)
+- [#2933](https://github.com/NVIDIA/infra-controller/pull/2933) fix(api): verify caller machine ID against instance when phone home - API/reference paths (4); API terms (3)
+- [#2945](https://github.com/NVIDIA/infra-controller/pull/2945) feat: nvswitch telemetry gaps - API terms (1)
+- [#2960](https://github.com/NVIDIA/infra-controller/pull/2960) refactor(test): consolidate integration tests into single binary - defaulted to API/reference on weak signals
+- [#2961](https://github.com/NVIDIA/infra-controller/pull/2961) feat(rest-api): Expose isDpfEnabled for Expected Machine endpoints - API/reference paths (43); API terms (7)
+- [#2964](https://github.com/NVIDIA/infra-controller/pull/2964) feat(rest): add site prerequisite bootstrap workflow - API/reference paths (6); API terms (7)
+- [#2970](https://github.com/NVIDIA/infra-controller/pull/2970) nvlink: fix NMX-C default port - API/reference paths (2)
+- [#2979](https://github.com/NVIDIA/infra-controller/pull/2979) change: nv-redfish 0.10.4 - defaulted to API/reference on weak signals
+- [#2986](https://github.com/NVIDIA/infra-controller/pull/2986) fix(rest-api): pin workflow-schema protobuf plugins to CI versions - API/reference paths (1); API terms (5)
+- [#2989](https://github.com/NVIDIA/infra-controller/pull/2989) nvlink: rotate NVSwitch cert via RMS - API/reference paths (5); API terms (1)
+- [#2990](https://github.com/NVIDIA/infra-controller/pull/2990) feat: scalable adhoc endpoint exploration - API/reference paths (10); API terms (3)
+- [#2993](https://github.com/NVIDIA/infra-controller/pull/2993) feat(rest-api): Allow users to specify UUID when creating Network Security Group - API/reference paths (42); API terms (2)
+- [#2995](https://github.com/NVIDIA/infra-controller/pull/2995) fix(setup): increase nico-core helm install timeout to 600s - defaulted to API/reference on weak signals
+- [#2999](https://github.com/NVIDIA/infra-controller/pull/2999) fix(otelecho): log trace ID as a structured field - API/reference paths (2); API terms (1)
+- [#3002](https://github.com/NVIDIA/infra-controller/pull/3002) feat(rest-api): Add API model, endpoints for host firmware config management - API/reference paths (12); API terms (5)
+- [#3003](https://github.com/NVIDIA/infra-controller/pull/3003) fix: skip BMC time-sync remediation on ingested hosts - defaulted to API/reference on weak signals
+- [#3004](https://github.com/NVIDIA/infra-controller/pull/3004) test(api-core): migrate selected API tests to integration harness - API/reference paths (6); API terms (1)
+- [#3009](https://github.com/NVIDIA/infra-controller/pull/3009) fix(ssh-console): avoid exposing ipmitool passwords - API terms (2)
+- [#3017](https://github.com/NVIDIA/infra-controller/pull/3017) preingestion: resolve URL-only firmware artifacts - API/reference paths (1); API terms (1)
+- [#3021](https://github.com/NVIDIA/infra-controller/pull/3021) fix(api): Allow VPC prefix deletes to rely on lifecycle drain - API/reference paths (2); API terms (1)
+- [#3023](https://github.com/NVIDIA/infra-controller/pull/3023) chore: Clean up stale naming in machine test - API/reference paths (1); API terms (2)
+- [#3037](https://github.com/NVIDIA/infra-controller/pull/3037) ci: temporarily remove linked issue completion workflow - API terms (2)
+- [#3038](https://github.com/NVIDIA/infra-controller/pull/3038) fix(rest-api): Update testcontainers to remove vulnerable Docker dependency - API/reference paths (2); API terms (2)
+- [#3040](https://github.com/NVIDIA/infra-controller/pull/3040) fix: Bump nico-nsm base image to alpine 3.24 to resolve container CVEs - API/reference paths (2)
+- [#3042](https://github.com/NVIDIA/infra-controller/pull/3042) fix(helm): move vpc-vni pool out of FNN section to fix duplicate-key … - API terms (1)
+- [#3043](https://github.com/NVIDIA/infra-controller/pull/3043) fix(rest-api): Use local binaries for CI protobuf generation - API/reference paths (2); API terms (2)
+- [#3044](https://github.com/NVIDIA/infra-controller/pull/3044) fix(bmc-explorer): skip BF4 boot options with null Members - API terms (1)
+- [#3047](https://github.com/NVIDIA/infra-controller/pull/3047) agent: Detect changes in unversioned ManagedHostNetworkConfigResponse fields - API/reference paths (1); API terms (1)
