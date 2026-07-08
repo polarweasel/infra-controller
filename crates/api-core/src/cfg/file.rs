@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
 use std::fmt;
 use std::net::{IpAddr, Ipv4Addr, SocketAddr};
 use std::path::PathBuf;
@@ -1530,6 +1530,17 @@ fn validate_tool_url(name: &str, url: &str) -> eyre::Result<()> {
 }
 
 impl CarbideConfig {
+    /// Which configuration keys were explicitly provided by the merged
+    /// sources, mapped to source labels — see [`super::provenance`]. Empty
+    /// for configs that weren't produced by `parse_carbide_config` (test
+    /// fixtures, programmatic construction).
+    pub fn explicit_value_paths(&self) -> BTreeMap<String, String> {
+        self.config_ctx
+            .as_ref()
+            .map(super::provenance::explicit_value_paths)
+            .unwrap_or_default()
+    }
+
     /// Returns a version of CarbideConfig where secrets are erased
     pub fn redacted(&self) -> Self {
         let mut config = self.clone();
